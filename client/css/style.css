@@ -1,13 +1,15 @@
 body {
+  margin: 0;
   text-align: center;
+  overflow: hidden;
 }
 
 canvas {
   background-image: linear-gradient(
     to bottom right,
-    rgba(0, 102, 102, 0.5),
-    #ffffff
+    #ffffff,
+    rgba(0, 102, 102, 0.7)
   );
-  width: 90%;
+  width: 70%;
   height: 100vh;
 }
