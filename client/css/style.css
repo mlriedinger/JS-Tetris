@@ -1,0 +1,11 @@
+.drawingZone {
+  width: 90vw;
+  height: 100vh;
+  margin: auto;
+  margin-top: 3em;
+}
+
+canvas {
+  background-color: rgba(0, 102, 102, 0.5);
+  width: 100%;
+}
