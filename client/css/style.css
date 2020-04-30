@@ -1,11 +1,13 @@
-.drawingZone {
-  width: 90vw;
-  height: 100vh;
-  margin: auto;
-  margin-top: 3em;
+body {
+  text-align: center;
 }
 
 canvas {
-  background-color: rgba(0, 102, 102, 0.5);
-  width: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(0, 102, 102, 0.5),
+    #ffffff
+  );
+  width: 90%;
+  height: 100vh;
 }
