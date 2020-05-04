@@ -70,10 +70,6 @@ const BLOCS = {
   },
 };
 
-var GRID = {
-  cells: [], // Sauvegarde les pièces qui sont déjà descendues pour que la pièce suivante ne puisse pas descendre jusqu'en bas
-  width: 12,
-  height: 18,
-};
-
-drawBloc(BLOCS[2], 0);
+let grid = {}; // La grille contient toutes les infos propres au jeu : le bloc qui est en train de descendre et les pièces qui sont déjà tombées
+initializeModel(grid);
+drawBloc(grid.bloc, grid.orientation);
