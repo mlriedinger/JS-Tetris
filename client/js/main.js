@@ -72,4 +72,5 @@ const BLOCS = {
 
 let grid = {}; // La grille contient toutes les infos propres au jeu : le bloc qui est en train de descendre et les pièces qui sont déjà tombées
 initializeModel(grid);
-drawBloc(grid.bloc, grid.orientation);
+initializeView(grid);
+initializeController(grid);

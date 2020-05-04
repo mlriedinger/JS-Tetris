@@ -23,4 +23,7 @@ function chooseBloc(grid) {
   grid.orientation = Math.floor(Math.random() * grid.bloc.cells.length);
   // La fonction Math.random retourne un nombre entre 0 et 1 avec 1 non compris donc Math.floor pour retourner un entier
   // grid.bloc.cells.length = nombre d'orientations possibles du bloc qui a été généré jsute au-dessus
+
+  grid.x = grid.width / 2 - 1; // -1 pour que la pièce soit correctement centrée
+  grid.y = 0;
 }
