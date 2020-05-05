@@ -1,6 +1,7 @@
 const BLOCS = {
   1: {
     // BLOC L
+    id: 1,
     cells: [
       // Tableau avec un tableau à double-entrée pour chaque index
       [
@@ -26,6 +27,7 @@ const BLOCS = {
   },
   2: {
     // BLOC T
+    id: 2,
     cells: [
       [
         [true, true, true],
@@ -50,11 +52,13 @@ const BLOCS = {
   },
   3: {
     // BLOC I
+    id: 3,
     cells: [[[true, true, true, true]], [[true], [true], [true], [true]]],
     color: "#FFD699",
   },
   4: {
     // BLOC Z
+    id: 4,
     cells: [
       [
         [true, true, false],
