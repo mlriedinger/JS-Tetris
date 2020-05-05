@@ -18,6 +18,13 @@ function draw(grid, context) {
   window.requestAnimationFrame(() => draw(grid, context)); // fonction proposée par le navigateur qui rappelle la fonction drawBloc dès que le navigateur est prêt
 }
 
+function drawCell(context, x, y, color) {
+  context.fillStyle = color;
+  context.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
+  context.strokeStyle = "#FFFFFF";
+  context.strokeRect(x * SIZE, y * SIZE, SIZE, SIZE);
+}
+
 function drawBloc(grid, context) {
   let cells = grid.bloc.cells[grid.orientation]; // On crée une variable pour naviguer plus facilement dans le tableau
   for (let i = 0; i < cells.length; i++) {
@@ -25,15 +32,7 @@ function drawBloc(grid, context) {
     for (let j = 0; j < cells[i].length; j++) {
       // On parcourt les colonnes de chaque ligne
       if (cells[i][j]) {
-        context.strokeStyle = "#FFFFFF";
-        context.strokeRect(
-          (grid.x + j) * SIZE,
-          (grid.y + i) * SIZE,
-          SIZE,
-          SIZE
-        );
-        context.fillStyle = grid.bloc.color;
-        context.fillRect((grid.x + j) * SIZE, (grid.y + i) * SIZE, SIZE, SIZE);
+        drawCell(context, grid.x + j, grid.y + i, grid.bloc.color);
       }
     }
   }
@@ -44,10 +43,7 @@ function drawGrid(grid, context) {
     for (let j = 0; j < grid.cells[i].length; j++) {
       let cell = grid.cells[i][j];
       if (cell > 0) {
-        context.fillStyle = BLOCS[cell].color;
-        context.fillRect(j * SIZE, i * SIZE, SIZE, SIZE);
-        context.strokeStyle = "#FFFFFF";
-        context.strokeRect(j * SIZE, i * SIZE, SIZE, SIZE);
+        drawCell(context, j, i, BLOCS[cell].color);
       }
     }
   }
