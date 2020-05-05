@@ -52,6 +52,24 @@ function update(grid) {
   }
 }
 
+function incrementOrientation(grid) {
+  grid.orientation = (grid.orientation + 1) % grid.bloc.cells.length;
+  // On incrémente grid.orientation
+  // Le modulo permet de vérifier qu'il ne s'incrémentera pas au-delà du nb max d'orientations du bloc
+}
+
+function incrementX(grid) {
+  if (grid.x < grid.width - grid.bloc.cells[grid.orientation][0].length) {
+    grid.x++;
+  }
+}
+
+function decrementX(grid) {
+  if (grid.x > 0) {
+    grid.x--;
+  }
+}
+
 function stockBloc(grid) {
   // On boucle sur le tableau du bloc pour reporter l'id du bloc dans le tableau grid.cells
   let cells = grid.bloc.cells[grid.orientation]; // On crée une variable pour naviguer plus facilement dans le tableau

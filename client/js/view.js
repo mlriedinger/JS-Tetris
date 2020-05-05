@@ -41,8 +41,10 @@ function drawBloc(grid, context) {
 function drawGrid(grid, context) {
   for (let i = 0; i < grid.cells.length; i++) {
     for (let j = 0; j < grid.cells[i].length; j++) {
-      let cell = grid.cells[i][j];
+      let cell = grid.cells[i][j]; // On parcourt chaque cellule de la grille
       if (cell > 0) {
+        // S'il y a un 0 dans la cellule, ça ne nous intéresse pas
+        // S'il y a un chiffre > 0, alors cela correspond à un bloc, donc on le dessine
         drawCell(context, j, i, BLOCS[cell].color);
       }
     }
