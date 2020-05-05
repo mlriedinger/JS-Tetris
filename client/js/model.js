@@ -49,7 +49,6 @@ function update(grid) {
     stockBloc(grid);
     chooseBloc(grid);
     // console.log(grid.cells);
-    // console.log("je suis en bas");
   }
 }
 
