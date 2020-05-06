@@ -15,7 +15,7 @@ const BLOCS = {
       ],
       [
         [true, true, true],
-        [true, false, false],
+        [false, false, true],
       ],
       [
         [false, true],
@@ -26,8 +26,33 @@ const BLOCS = {
     color: "#FFCCB3",
   },
   2: {
-    // BLOC T
+    // BLOC L inversé
     id: 2,
+    cells: [
+      [
+        [false, false, true],
+        [true, true, true],
+      ],
+      [
+        [true, false],
+        [true, false],
+        [true, true],
+      ],
+      [
+        [true, true, true],
+        [true, false, false],
+      ],
+      [
+        [true, true],
+        [false, true],
+        [false, true],
+      ],
+    ],
+    color: "#FFCCB3",
+  },
+  3: {
+    // BLOC T
+    id: 3,
     cells: [
       [
         [true, true, true],
@@ -50,15 +75,15 @@ const BLOCS = {
     ],
     color: "#B3D9FF",
   },
-  3: {
+  4: {
     // BLOC I
-    id: 3,
+    id: 4,
     cells: [[[true, true, true, true]], [[true], [true], [true], [true]]],
     color: "#FFD699",
   },
-  4: {
+  5: {
     // BLOC Z
-    id: 4,
+    id: 5,
     cells: [
       [
         [true, true, false],
@@ -71,6 +96,33 @@ const BLOCS = {
       ],
     ],
     color: "#B3E6B3",
+  },
+  6: {
+    // BLOC Z inversé
+    id: 6,
+    cells: [
+      [
+        [false, true, true],
+        [true, true, false],
+      ],
+      [
+        [true, false],
+        [true, true],
+        [false, true],
+      ],
+    ],
+    color: "#B3E6B3",
+  },
+  7: {
+    // BLOC carré
+    id: 7,
+    cells: [
+      [
+        [true, true],
+        [true, true],
+      ],
+    ],
+    color: "#FF5252",
   },
 };
 

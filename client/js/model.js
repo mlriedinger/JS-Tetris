@@ -1,5 +1,7 @@
 // La structure du jeu - données et règles du jeu - AUCUNE action avec le joueur
 
+const INTERVAL = 1000;
+
 function initializeModel(grid) {
   // Initialise le modèle
   (grid.cells = []), // Sauvegarde les pièces qui sont déjà descendues pour que la pièce suivante ne puisse pas descendre jusqu'en bas
@@ -11,7 +13,9 @@ function initializeModel(grid) {
     (grid.y = -1), // Stocke les coordonnées d'ordonnée du bloc actuel
     initializeGrid(grid);
   chooseBloc(grid);
-  grid.interval = window.setInterval(update, 500, grid); // C'est setInterval qui appelle la fonction update, donc il faut lui indiquer quel paramètre passer à update
+  grid.score = 0;
+  grid.level = 1;
+  grid.interval = window.setInterval(update, INTERVAL, grid); // C'est setInterval qui appelle la fonction update, donc il faut lui indiquer quel paramètre passer à update
 }
 
 function initializeGrid(grid) {
@@ -120,9 +124,12 @@ function checkFullLine(grid) {
         res = false;
       }
     }
-    console.log(res);
+    // console.log(res);
     if (res) {
       deleteLine(grid, i); // Si res = true on supprime la ligne
+      score(grid);
+      console.log(grid.score);
+      console.log(grid.level);
     }
   }
 }
@@ -135,5 +142,14 @@ function deleteLine(grid, y) {
   }
   for (let j = 0; j < grid.cells[y].length; j++) {
     grid.cells[0][j] = 0;
+  }
+}
+
+function score(grid) {
+  grid.score += 10;
+  if (grid.score % 50 == 0) {
+    grid.level++;
+    window.clearInterval(grid.interval);
+    grid.interval = window.setInterval(update, INTERVAL / grid.level, grid);
   }
 }

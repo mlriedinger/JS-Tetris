@@ -6,20 +6,15 @@ function initializeController(grid) {
     switch (event.code) {
       case "ArrowUp":
         incrementOrientation(grid);
-        console.log("up");
         break;
       case "ArrowRight":
         incrementX(grid);
-        console.log("right");
         break;
       case "ArrowDown":
         update(grid);
-        console.log("down");
         break;
       case "ArrowLeft":
         decrementX(grid);
-
-        console.log("left");
         break;
     }
   };
