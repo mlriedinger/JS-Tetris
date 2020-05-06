@@ -18,7 +18,7 @@ function initializeGrid(grid) {
   // Crée une grille vide avec des 0 pour pouvoir ensuite mémoriser l'emplacement des blocs qui sont descendus
   for (let i = 0; i < grid.height; i++) {
     grid.cells[i] = []; // Dans grid.cells, on ajoute 18 tableaux vides
-    for (let j = 0; j < grid.height; j++) {
+    for (let j = 0; j < grid.width; j++) {
       grid.cells[i][j] = 0; // Dans chacun des 18 tableaux vides, on ajoute un tableau de 12 lignes de 0
     }
   }
@@ -49,8 +49,9 @@ function update(grid) {
     // Si la coordonnée y est inférieure à la hauteur de la zone de dessin - la hauteur du bloc actuel
     grid.y++;
   } else {
-    stockBloc(grid);
-    chooseBloc(grid);
+    stockBloc(grid); // Stocke le bloc
+    checkFullLine(grid); // Vérifie si la ligne est complète
+    chooseBloc(grid); // Choisit un nouveau bloc aléatoirement
     // console.log(grid.cells);
   }
 }
@@ -104,5 +105,33 @@ function stockBloc(grid) {
         grid.cells[grid.y + i][grid.x + j] = grid.bloc.id; // Permet de parcourir tout le tableau du bloc et de ne pas rester seulement sur la 1ère pièce en haut à gauche
       }
     }
+  }
+}
+
+function checkFullLine(grid) {
+  for (let i = 0; i < grid.cells.length; i++) {
+    let res = true;
+    // On parcourt les lignes de la grille
+    for (let j = 0; j < grid.cells[i].length; j++) {
+      // On parcourt les colonnes de chaque ligne de la grille
+      if (grid.cells[i][j] === 0) {
+        res = false;
+      }
+    }
+    console.log(res);
+    if (res) {
+      deleteLine(grid, i); // Si res = true on supprime la ligne
+    }
+  }
+}
+
+function deleteLine(grid, y) {
+  for (let i = 0; i < y; i++) {
+    for (let j = 0; j < grid.cells[y].length; j++) {
+      grid.cells[y - i][j] = grid.cells[y - i - 1][j];
+    }
+  }
+  for (let j = 0; j < grid.cells[y].length; j++) {
+    grid.cells[0][j] = 0;
   }
 }
