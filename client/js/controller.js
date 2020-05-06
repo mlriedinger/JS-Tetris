@@ -13,6 +13,7 @@ function initializeController(grid) {
         console.log("right");
         break;
       case "ArrowDown":
+        update(grid);
         console.log("down");
         break;
       case "ArrowLeft":

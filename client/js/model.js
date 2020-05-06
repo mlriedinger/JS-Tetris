@@ -42,7 +42,10 @@ function chooseBloc(grid) {
 }
 
 function update(grid) {
-  if (grid.y < grid.height - grid.bloc.cells[grid.orientation].length) {
+  if (
+    grid.y < grid.height - grid.bloc.cells[grid.orientation].length &&
+    blocCanGoThere(grid, grid.x, grid.y + 1)
+  ) {
     // Si la coordonnée y est inférieure à la hauteur de la zone de dessin - la hauteur du bloc actuel
     grid.y++;
   } else {
@@ -59,15 +62,35 @@ function incrementOrientation(grid) {
 }
 
 function incrementX(grid) {
-  if (grid.x < grid.width - grid.bloc.cells[grid.orientation][0].length) {
+  if (
+    grid.x < grid.width - grid.bloc.cells[grid.orientation][0].length &&
+    blocCanGoThere(grid, grid.x + 1, grid.y)
+  ) {
     grid.x++;
   }
 }
 
 function decrementX(grid) {
-  if (grid.x > 0) {
+  if (grid.x > 0 && blocCanGoThere(grid, grid.x - 1, grid.y)) {
     grid.x--;
   }
+}
+
+function blocCanGoThere(grid, x, y) {
+  let cells = grid.bloc.cells[grid.orientation];
+  let res = true;
+  // On parcourt les cellules en-dessous de l'emplacement actuel du bloc
+  for (let i = 0; i < cells.length; i++) {
+    for (let j = 0; j < cells[i].length; j++) {
+      if (cells[i][j]) {
+        if (grid.cells[y + i][x + j] > 0) {
+          // Si les cellules > 0, alors on passe la variable res à false pour retourner false
+          res = false;
+        }
+      }
+    }
+  }
+  return res;
 }
 
 function stockBloc(grid) {
