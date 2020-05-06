@@ -11,7 +11,7 @@ function initializeModel(grid) {
     (grid.y = -1), // Stocke les coordonnées d'ordonnée du bloc actuel
     initializeGrid(grid);
   chooseBloc(grid);
-  window.setInterval(update, 500, grid); // C'est setInterval qui appelle la fonction update, donc il faut lui indiquer quel paramètre passer à update
+  grid.interval = window.setInterval(update, 500, grid); // C'est setInterval qui appelle la fonction update, donc il faut lui indiquer quel paramètre passer à update
 }
 
 function initializeGrid(grid) {
@@ -48,6 +48,8 @@ function update(grid) {
   ) {
     // Si la coordonnée y est inférieure à la hauteur de la zone de dessin - la hauteur du bloc actuel
     grid.y++;
+  } else if (grid.y == 0) {
+    window.clearInterval(grid.interval);
   } else {
     stockBloc(grid); // Stocke le bloc
     checkFullLine(grid); // Vérifie si la ligne est complète
