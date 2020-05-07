@@ -14,6 +14,7 @@ body {
   margin: 0;
   text-align: center;
   overflow: hidden;
+  display: flex;
   font-family: "3dumbregular";
   color: rgba(0, 102, 102, 0.7);
 }
@@ -27,16 +28,8 @@ canvas {
   height: 100vh;
 }
 
-#stats {
-  position: fixed;
-  top: 4em;
-  right: 5em;
+div {
   font-size: 2em;
-}
-
-#rules {
-  position: fixed;
-  top: 4em;
-  left: 5em;
-  font-size: 2em;
+  width: 30%;
+  margin-top: 3em;
 }
