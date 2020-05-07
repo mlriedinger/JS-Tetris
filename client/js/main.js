@@ -3,21 +3,25 @@ const BLOCS = {
     // BLOC L
     id: 1,
     cells: [
-      // Tableau avec un tableau à double-entrée pour chaque index
+      // Tableau avec un tableau à double-entrée pour chaque index = tableau à 3 dimensions
       [
-        [true, false, false], // Ligne 1
-        [true, true, true],
-      ], // Ligne 2
+        // Orientation 1 du bloc
+        [true, false, false], // Ligne 1 du bloc
+        [true, true, true], // Ligne 2 du bloc
+      ],
       [
+        // Orientation 2 du bloc
         [true, true],
         [true, false],
         [true, false],
       ],
       [
+        // Orientation 3 du bloc
         [true, true, true],
         [false, false, true],
       ],
       [
+        // Orientation 4 du bloc
         [false, true],
         [false, true],
         [true, true],
@@ -48,7 +52,7 @@ const BLOCS = {
         [false, true],
       ],
     ],
-    color: "#FFCCB3",
+    color: "#FFAA80",
   },
   3: {
     // BLOC T
@@ -95,7 +99,7 @@ const BLOCS = {
         [true, false],
       ],
     ],
-    color: "#B3E6B3",
+    color: "#C6EBC6",
   },
   6: {
     // BLOC Z inversé
@@ -111,7 +115,7 @@ const BLOCS = {
         [false, true],
       ],
     ],
-    color: "#B3E6B3",
+    color: "#8DD88D",
   },
   7: {
     // BLOC carré
@@ -122,7 +126,7 @@ const BLOCS = {
         [true, true],
       ],
     ],
-    color: "#FF5252",
+    color: "#FFB3B3",
   },
 };
 
@@ -130,3 +134,5 @@ let grid = {}; // La grille contient toutes les infos propres au jeu : le bloc q
 initializeModel(grid);
 initializeView(grid);
 initializeController(grid);
+
+

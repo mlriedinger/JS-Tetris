@@ -21,15 +21,17 @@ function initializeModel(grid) {
 function initializeGrid(grid) {
   // Crée une grille vide avec des 0 pour pouvoir ensuite mémoriser l'emplacement des blocs qui sont descendus
   for (let i = 0; i < grid.height; i++) {
+    // Boucle qui parcourt chaque ligne, donc la hauteur du tableau
     grid.cells[i] = []; // Dans grid.cells, on ajoute 18 tableaux vides
     for (let j = 0; j < grid.width; j++) {
+      // Boucle qui parcourt chaque colonne de chaque ligne
       grid.cells[i][j] = 0; // Dans chacun des 18 tableaux vides, on ajoute un tableau de 12 lignes de 0
     }
   }
 }
 
 function chooseBloc(grid) {
-  // Choisi un bloc de manière aléatoire
+  // Choisi un bloc de manière aléatoire parmi tous les blocs enregistrés dans la const BLOCS
   grid.bloc = BLOCS[Math.floor(Math.random() * Object.keys(BLOCS).length) + 1];
   // On veut récupérer l'index du bloc donc BLOCS []
   // La fonction Math.random retourne un nombre entre 0 et 1 avec 1 non compris donc Math.floor pour retourner un entier
@@ -42,7 +44,7 @@ function chooseBloc(grid) {
   // grid.bloc.cells.length = nombre d'orientations possibles du bloc qui a été généré jsute au-dessus
 
   grid.x = grid.width / 2 - 1; // -1 pour que la pièce soit correctement centrée
-  grid.y = 0;
+  grid.y = 0; // Le bloc apparaît tout en haut de la zone de dessin
 }
 
 function update(grid) {
@@ -50,10 +52,12 @@ function update(grid) {
     grid.y < grid.height - grid.bloc.cells[grid.orientation].length &&
     blocCanGoThere(grid, grid.x, grid.y + 1)
   ) {
-    // Si la coordonnée y est inférieure à la hauteur de la zone de dessin - la hauteur du bloc actuel
-    grid.y++;
+    // Si la coordonnée y est inférieure à la hauteur de la zone de dessin - la hauteur du bloc actuel et que la pièce peut descendre
+    grid.y++; // On fait descendre la pièce
   } else if (grid.y == 0) {
-    window.clearInterval(grid.interval);
+    // Si la pièce atteint le haut de la grille
+    window.clearInterval(grid.interval); // On arrête le jeu
+    alert("GAME OVER."); // et le joueur est degoûté
   } else {
     stockBloc(grid); // Stocke le bloc
     checkFullLine(grid); // Vérifie si la ligne est complète
@@ -84,6 +88,7 @@ function decrementX(grid) {
 }
 
 function blocCanGoThere(grid, x, y) {
+  // Vérifie si le bloc peut aller vers la gauche, la droite ou le bas sans générer de collision
   let cells = grid.bloc.cells[grid.orientation];
   let res = true;
   // On parcourt les cellules en-dessous de l'emplacement actuel du bloc
@@ -101,7 +106,7 @@ function blocCanGoThere(grid, x, y) {
 }
 
 function stockBloc(grid) {
-  // On boucle sur le tableau du bloc pour reporter l'id du bloc dans le tableau grid.cells
+  // Boucle sur le tableau du bloc pour reporter l'id du bloc dans le tableau grid.cells
   let cells = grid.bloc.cells[grid.orientation]; // On crée une variable pour naviguer plus facilement dans le tableau
   for (let i = 0; i < cells.length; i++) {
     // On parcourt les lignes de chaque objet
@@ -115,26 +120,26 @@ function stockBloc(grid) {
 }
 
 function checkFullLine(grid) {
+  // Vérifie si une ligne est pleine
   for (let i = 0; i < grid.cells.length; i++) {
-    let res = true;
+    let res = true; // On part du principe que la case est occupée
     // On parcourt les lignes de la grille
     for (let j = 0; j < grid.cells[i].length; j++) {
       // On parcourt les colonnes de chaque ligne de la grille
       if (grid.cells[i][j] === 0) {
-        res = false;
+        res = false; // Si on rencontre un 0, on passe res à false
       }
     }
     // console.log(res);
     if (res) {
       deleteLine(grid, i); // Si res = true on supprime la ligne
       score(grid);
-      console.log(grid.score);
-      console.log(grid.level);
     }
   }
 }
 
 function deleteLine(grid, y) {
+  // Supprime une ligne complète, décale toutes les pièces du dessus vers le bas et ajoute une ligne de 0 sur la dernière ligne du tableau
   for (let i = 0; i < y; i++) {
     for (let j = 0; j < grid.cells[y].length; j++) {
       grid.cells[y - i][j] = grid.cells[y - i - 1][j];
@@ -146,6 +151,7 @@ function deleteLine(grid, y) {
 }
 
 function score(grid) {
+  // Gère le score, le passage de niveau et l'accélération du jeu à chaque passage de niveau
   grid.score += 10;
   if (grid.score % 50 == 0) {
     grid.level++;

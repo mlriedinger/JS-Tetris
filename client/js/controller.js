@@ -2,6 +2,7 @@
 
 function initializeController(grid) {
   window.onkeydown = function (event) {
+    // On écoute les touches du clavier pour les récupérer
     // console.log(event.code);
     switch (event.code) {
       case "ArrowUp":

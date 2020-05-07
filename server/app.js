@@ -6,7 +6,7 @@ var app = express(); // On appelle une instance du module express
 // On écoute le port 80, aucune route n'est définie pour le moment
 http.Server(app).listen(80);
 () => {
-  console.log("listen on 80");
+  console.log("Listenning on 80");
 };
 
 // On utilise express pour qu'au chargement de la page, quand le navigateur renvoie "/", on appelle le dossier "client" qui contient l'index.html
