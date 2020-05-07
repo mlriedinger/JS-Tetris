@@ -58,6 +58,7 @@ function update(grid) {
     // Si la pièce atteint le haut de la grille
     window.clearInterval(grid.interval); // On arrête le jeu
     alert("GAME OVER."); // et le joueur est degoûté
+    document.location.reload(true);
   } else {
     stockBloc(grid); // Stocke le bloc
     checkFullLine(grid); // Vérifie si la ligne est complète

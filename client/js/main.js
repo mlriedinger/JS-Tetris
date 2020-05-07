@@ -1,4 +1,4 @@
-const BLOCS = {
+const BLOCS = { // Contient tous les blocs nécessaires au jeu
   1: {
     // BLOC L
     id: 1,
